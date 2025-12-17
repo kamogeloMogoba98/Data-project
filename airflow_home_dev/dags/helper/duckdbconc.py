@@ -28,8 +28,8 @@ class duckconnect():
         # 2. Use the modern configuration method (duckdb.sql())
 
         self.con.sql("SET s3_endpoint='minio-server:9000';")
-        self.con.sql("SET s3_access_key_id='minioadmin';")
-        self.con.sql("SET s3_secret_access_key='minioadmin';")
+        self.con.sql("SET s3_access_key_id='admin';")
+        self.con.sql("SET s3_secret_access_key='password';")
         self.con.sql("SET s3_use_ssl=false;") # Set to false since you are using HTTP (no SSL)
 
         # OPTIONAL: This is often necessary for MinIO

@@ -15,8 +15,8 @@ class S3Mino_connection:
         s3 = boto3.client(
             "s3",
             endpoint_url=os.environ.get("MINIO_ENDPOINT", "http://minio-server:9000"),
-            aws_access_key_id=os.environ.get("MINIO_ACCESS_KEY", "minioadmin"),
-            aws_secret_access_key=os.environ.get("MINIO_SECRET_KEY", "minioadmin"),
+            aws_access_key_id=os.environ.get("MINIO_ACCESS_KEY", "admin"),
+            aws_secret_access_key=os.environ.get("MINIO_SECRET_KEY", "password"),
             config=Config(signature_version="s3v4")
         )
 

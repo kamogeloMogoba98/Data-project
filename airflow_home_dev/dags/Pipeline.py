@@ -343,12 +343,59 @@ def sale_process_pipeline():
                 f"The record count{GoldFactSalestable['count']}.",
                 f"Output_path: {GoldFactSalestable['Output']}, "
             )
-        
+    
         
         except Exception as e:
             logger.error(f"There is an issue with the gold injestion:{e}")
             raise
- 
+    
+
+
+    
+    @task
+    def push_to_motherduck():
+        import duckdb
+        import os
+        
+        local_path = "/opt/airflow/airflow_home_dev/my_local.db"
+        token = os.getenv('MOTHERDUCK_TOKEN')
+        
+        # 1. Connect to the local file
+        con = duckdb.connect(local_path)
+        
+        try:
+            # 2. Attach MotherDuck
+            con.sql("LOAD motherduck;")
+            con.sql(f"SET motherduck_token='{token}';")
+            con.sql("ATTACH 'md:my_database' AS cloud_db;")
+            
+            # 3. Get a list of all tables in the local DB
+            # This query ignores internal DuckDB system tables
+            tables = con.sql("""
+                SELECT table_schema, table_name 
+                FROM information_schema.tables 
+                WHERE table_schema NOT IN ('information_schema', 'pg_catalog', 'main')
+            """).fetchall()
+
+            for schema_name, table_name in tables:
+                print(f"Syncing {schema_name}.{table_name} to MotherDuck...")
+                
+                # Ensure the schema exists in the cloud first
+                con.sql(f"CREATE SCHEMA IF NOT EXISTS cloud_db.{schema_name};")
+                
+                # 🚀 Mirror the table exactly (keeps names, columns, and data)
+                con.sql(f"""
+                    CREATE OR REPLACE TABLE cloud_db.{schema_name}.{table_name} AS 
+                    SELECT * FROM {schema_name}.{table_name};
+                """)
+                
+            print(f"Successfully synced {len(tables)} tables to MotherDuck!")
+
+        except Exception as e:
+            print(f"Sync failed: {e}")
+            raise e
+        finally:
+            con.close()
 
 
 
@@ -365,6 +412,8 @@ def sale_process_pipeline():
     silverParquet =bronzetable_to_silverParquet()
     SilverDimTables=silverParquetfiles_silverDimTable()
     Goldoarquet_to_GoldFacttables=Goldparquet_to_facttable()
+    # Assuming your ingestion task is called ingest_task
+    motherduck=push_to_motherduck()
         
 
 
@@ -372,7 +421,7 @@ def sale_process_pipeline():
 
 
     # 4. Set Dependencies
-    start >>injest_json_bronze>>bronzeTables>>silverParquet>>SilverDimTables>>Goldoarquet_to_GoldFacttables
+    start >>injest_json_bronze>>bronzeTables>>silverParquet>>SilverDimTables>>Goldoarquet_to_GoldFacttables>>motherduck
 
 # 5. Instantiate the DAG
 dag_instance = sale_process_pipeline()

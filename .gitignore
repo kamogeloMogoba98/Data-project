@@ -2,5 +2,17 @@
 logs/
 airflow-webserver.pid
 __pycache__/
-# Optional: Ignore the actual metadata DB if you want users to start fresh
-# airflow.db
+
+# 🛡️ SECURITY: Never commit your secrets
+.env
+
+# 💾 DATA: Don't commit the local DuckDB database files
+# These are large and will slow down your git commands
+*.db
+*.db.wal
+airflow_home_dev/
+
+# Python environment
+venv/
+.venv/
+.DS_Store
