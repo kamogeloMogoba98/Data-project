@@ -3,7 +3,7 @@ logs/
 airflow-webserver.pid
 __pycache__/
 
-# 🛡️ SECURITY: Never commit your secrets
+# SECURITY: Never commit your secrets
 .env
 
 # 💾 DATA: Don't commit the local DuckDB database files
