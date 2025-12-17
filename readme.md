@@ -6,6 +6,9 @@ A data engineering pipeline implementing the **Medallion Architecture (Bronze â†
 
 ##  Quick Start
 
+
+
+
 1. **Clone the repository**:
 
 ```bash
@@ -125,7 +128,6 @@ MOTHERDUCK_TOKEN=md_your_actual_token_here
 - **MinIO:** S3-compatible object storage for JSON and Parquet files
 - **DuckDB:** Local SQL database for schema layers
 - **MotherDuck:** Cloud-hosted DuckDB for querying and analytics
-- **Soda Core:** Automated data quality checks
 - **Metabase:** Open-source BI tool to visualize data and create dashboards
 
 ---
