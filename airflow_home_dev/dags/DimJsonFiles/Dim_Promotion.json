@@ -1,0 +1,452 @@
+[
+    {
+        "PromotionID":"PROM0001",
+        "ProductID":"PROD033",
+        "PromotionName":"Flash Deal",
+        "DiscountPercent":30.88,
+        "StartDate":"2025-10-09T18:28:30.049919",
+        "EndDate":"2025-10-22T18:28:30.049919",
+        "PromotionType":"Holiday"
+    },
+    {
+        "PromotionID":"PROM0002",
+        "ProductID":"PROD001",
+        "PromotionName":"Black Friday",
+        "DiscountPercent":33.71,
+        "StartDate":"2025-01-25T14:41:28.412371",
+        "EndDate":"2025-02-14T14:41:28.412371",
+        "PromotionType":"Online"
+    },
+    {
+        "PromotionID":"PROM0003",
+        "ProductID":"PROD030",
+        "PromotionName":"Buy One Get One",
+        "DiscountPercent":58.64,
+        "StartDate":"2025-02-16T15:22:36.406970",
+        "EndDate":"2025-03-08T15:22:36.406970",
+        "PromotionType":"Limited Time"
+    },
+    {
+        "PromotionID":"PROM0004",
+        "ProductID":"PROD033",
+        "PromotionName":"Winter Clearance",
+        "DiscountPercent":68.19,
+        "StartDate":"2025-01-20T02:37:34.835158",
+        "EndDate":"2025-02-18T02:37:34.835158",
+        "PromotionType":"Online"
+    },
+    {
+        "PromotionID":"PROM0005",
+        "ProductID":"PROD032",
+        "PromotionName":"Flash Deal",
+        "DiscountPercent":59.29,
+        "StartDate":"2025-07-18T12:18:48.548233",
+        "EndDate":"2025-08-03T12:18:48.548233",
+        "PromotionType":"Clearance"
+    },
+    {
+        "PromotionID":"PROM0006",
+        "ProductID":"PROD019",
+        "PromotionName":"Special Offer",
+        "DiscountPercent":29.97,
+        "StartDate":"2025-08-06T08:11:58.173952",
+        "EndDate":"2025-08-21T08:11:58.173952",
+        "PromotionType":"Seasonal"
+    },
+    {
+        "PromotionID":"PROM0007",
+        "ProductID":"PROD014",
+        "PromotionName":"New Year Discount",
+        "DiscountPercent":17.51,
+        "StartDate":"2025-05-29T12:35:53.107915",
+        "EndDate":"2025-06-04T12:35:53.107915",
+        "PromotionType":"Store"
+    },
+    {
+        "PromotionID":"PROM0008",
+        "ProductID":"PROD037",
+        "PromotionName":"Winter Clearance",
+        "DiscountPercent":67.98,
+        "StartDate":"2025-09-14T16:36:43.784079",
+        "EndDate":"2025-09-17T16:36:43.784079",
+        "PromotionType":"Online"
+    },
+    {
+        "PromotionID":"PROM0009",
+        "ProductID":"PROD035",
+        "PromotionName":"Holiday Promo",
+        "DiscountPercent":62.96,
+        "StartDate":"2025-06-17T19:00:41.874449",
+        "EndDate":"2025-07-13T19:00:41.874449",
+        "PromotionType":"Clearance"
+    },
+    {
+        "PromotionID":"PROM0010",
+        "ProductID":"PROD046",
+        "PromotionName":"Cyber Monday",
+        "DiscountPercent":39.58,
+        "StartDate":"2025-02-04T03:18:56.721971",
+        "EndDate":"2025-02-25T03:18:56.721971",
+        "PromotionType":"Online"
+    },
+    {
+        "PromotionID":"PROM0011",
+        "ProductID":"PROD048",
+        "PromotionName":"Summer Sale",
+        "DiscountPercent":23.53,
+        "StartDate":"2025-11-05T04:44:20.595913",
+        "EndDate":"2025-12-03T04:44:20.595913",
+        "PromotionType":"Limited Time"
+    },
+    {
+        "PromotionID":"PROM0012",
+        "ProductID":"PROD002",
+        "PromotionName":"Black Friday",
+        "DiscountPercent":67.91,
+        "StartDate":"2025-10-11T00:03:38.594056",
+        "EndDate":"2025-11-08T00:03:38.594056",
+        "PromotionType":"Online"
+    },
+    {
+        "PromotionID":"PROM0013",
+        "ProductID":"PROD040",
+        "PromotionName":"New Year Discount",
+        "DiscountPercent":43.04,
+        "StartDate":"2025-08-11T13:07:04.213410",
+        "EndDate":"2025-08-17T13:07:04.213410",
+        "PromotionType":"Holiday"
+    },
+    {
+        "PromotionID":"PROM0014",
+        "ProductID":"PROD012",
+        "PromotionName":"Holiday Promo",
+        "DiscountPercent":23.87,
+        "StartDate":"2025-10-31T17:25:41.049812",
+        "EndDate":"2025-11-03T17:25:41.049812",
+        "PromotionType":"Limited Time"
+    },
+    {
+        "PromotionID":"PROM0015",
+        "ProductID":"PROD017",
+        "PromotionName":"New Year Discount",
+        "DiscountPercent":36.96,
+        "StartDate":"2025-03-12T13:36:17.205071",
+        "EndDate":"2025-04-05T13:36:17.205071",
+        "PromotionType":"Limited Time"
+    },
+    {
+        "PromotionID":"PROM0016",
+        "ProductID":"PROD045",
+        "PromotionName":"Black Friday",
+        "DiscountPercent":50.69,
+        "StartDate":"2025-02-26T12:44:44.461164",
+        "EndDate":"2025-03-21T12:44:44.461164",
+        "PromotionType":"Clearance"
+    },
+    {
+        "PromotionID":"PROM0017",
+        "ProductID":"PROD042",
+        "PromotionName":"Special Offer",
+        "DiscountPercent":18.5,
+        "StartDate":"2025-02-14T17:15:30.978495",
+        "EndDate":"2025-02-19T17:15:30.978495",
+        "PromotionType":"Online"
+    },
+    {
+        "PromotionID":"PROM0018",
+        "ProductID":"PROD009",
+        "PromotionName":"Weekend Special",
+        "DiscountPercent":69.17,
+        "StartDate":"2025-02-26T07:50:21.766075",
+        "EndDate":"2025-03-15T07:50:21.766075",
+        "PromotionType":"Limited Time"
+    },
+    {
+        "PromotionID":"PROM0019",
+        "ProductID":"PROD004",
+        "PromotionName":"Special Offer",
+        "DiscountPercent":58.36,
+        "StartDate":"2025-04-28T06:57:55.581653",
+        "EndDate":"2025-05-25T06:57:55.581653",
+        "PromotionType":"Online"
+    },
+    {
+        "PromotionID":"PROM0020",
+        "ProductID":"PROD021",
+        "PromotionName":"Summer Sale",
+        "DiscountPercent":58.53,
+        "StartDate":"2025-02-17T22:05:42.074475",
+        "EndDate":"2025-03-13T22:05:42.074475",
+        "PromotionType":"Holiday"
+    },
+    {
+        "PromotionID":"PROM0021",
+        "ProductID":"PROD025",
+        "PromotionName":"Weekend Special",
+        "DiscountPercent":10.12,
+        "StartDate":"2024-12-12T19:34:01.556956",
+        "EndDate":"2024-12-28T19:34:01.556956",
+        "PromotionType":"Seasonal"
+    },
+    {
+        "PromotionID":"PROM0022",
+        "ProductID":"PROD045",
+        "PromotionName":"Flash Deal",
+        "DiscountPercent":49.94,
+        "StartDate":"2025-03-05T03:08:46.111343",
+        "EndDate":"2025-04-03T03:08:46.111343",
+        "PromotionType":"Holiday"
+    },
+    {
+        "PromotionID":"PROM0023",
+        "ProductID":"PROD041",
+        "PromotionName":"Weekend Special",
+        "DiscountPercent":52.75,
+        "StartDate":"2025-08-21T07:50:07.982493",
+        "EndDate":"2025-09-17T07:50:07.982493",
+        "PromotionType":"Limited Time"
+    },
+    {
+        "PromotionID":"PROM0024",
+        "ProductID":"PROD050",
+        "PromotionName":"Cyber Monday",
+        "DiscountPercent":69.22,
+        "StartDate":"2025-02-07T03:58:58.229494",
+        "EndDate":"2025-02-13T03:58:58.229494",
+        "PromotionType":"Limited Time"
+    },
+    {
+        "PromotionID":"PROM0025",
+        "ProductID":"PROD043",
+        "PromotionName":"Special Offer",
+        "DiscountPercent":16.2,
+        "StartDate":"2025-08-01T01:56:04.587975",
+        "EndDate":"2025-08-28T01:56:04.587975",
+        "PromotionType":"Store"
+    },
+    {
+        "PromotionID":"PROM0026",
+        "ProductID":"PROD047",
+        "PromotionName":"Winter Clearance",
+        "DiscountPercent":48.13,
+        "StartDate":"2025-09-24T00:44:31.528164",
+        "EndDate":"2025-10-15T00:44:31.528164",
+        "PromotionType":"Store"
+    },
+    {
+        "PromotionID":"PROM0027",
+        "ProductID":"PROD042",
+        "PromotionName":"Cyber Monday",
+        "DiscountPercent":56.22,
+        "StartDate":"2025-11-20T09:13:42.727958",
+        "EndDate":"2025-12-10T09:13:42.727958",
+        "PromotionType":"Limited Time"
+    },
+    {
+        "PromotionID":"PROM0028",
+        "ProductID":"PROD037",
+        "PromotionName":"Cyber Monday",
+        "DiscountPercent":36.51,
+        "StartDate":"2025-09-16T23:43:33.755806",
+        "EndDate":"2025-09-19T23:43:33.755806",
+        "PromotionType":"Holiday"
+    },
+    {
+        "PromotionID":"PROM0029",
+        "ProductID":"PROD035",
+        "PromotionName":"Summer Sale",
+        "DiscountPercent":23.18,
+        "StartDate":"2024-12-28T00:25:11.278450",
+        "EndDate":"2025-01-20T00:25:11.278450",
+        "PromotionType":"Online"
+    },
+    {
+        "PromotionID":"PROM0030",
+        "ProductID":"PROD001",
+        "PromotionName":"Buy One Get One",
+        "DiscountPercent":30.29,
+        "StartDate":"2025-06-06T07:41:44.949805",
+        "EndDate":"2025-06-24T07:41:44.949805",
+        "PromotionType":"Store"
+    },
+    {
+        "PromotionID":"PROM0031",
+        "ProductID":"PROD024",
+        "PromotionName":"Flash Deal",
+        "DiscountPercent":15.61,
+        "StartDate":"2025-04-27T02:35:06.820894",
+        "EndDate":"2025-05-10T02:35:06.820894",
+        "PromotionType":"Limited Time"
+    },
+    {
+        "PromotionID":"PROM0032",
+        "ProductID":"PROD015",
+        "PromotionName":"Summer Sale",
+        "DiscountPercent":18.87,
+        "StartDate":"2025-06-14T22:03:31.719177",
+        "EndDate":"2025-07-11T22:03:31.719177",
+        "PromotionType":"Seasonal"
+    },
+    {
+        "PromotionID":"PROM0033",
+        "ProductID":"PROD024",
+        "PromotionName":"Black Friday",
+        "DiscountPercent":21.28,
+        "StartDate":"2025-08-19T05:35:21.425825",
+        "EndDate":"2025-09-06T05:35:21.425825",
+        "PromotionType":"Holiday"
+    },
+    {
+        "PromotionID":"PROM0034",
+        "ProductID":"PROD047",
+        "PromotionName":"Buy One Get One",
+        "DiscountPercent":63.22,
+        "StartDate":"2024-12-19T12:56:34.833694",
+        "EndDate":"2024-12-29T12:56:34.833694",
+        "PromotionType":"Limited Time"
+    },
+    {
+        "PromotionID":"PROM0035",
+        "ProductID":"PROD026",
+        "PromotionName":"Flash Deal",
+        "DiscountPercent":57.78,
+        "StartDate":"2025-06-06T10:45:45.120706",
+        "EndDate":"2025-06-19T10:45:45.120706",
+        "PromotionType":"Online"
+    },
+    {
+        "PromotionID":"PROM0036",
+        "ProductID":"PROD009",
+        "PromotionName":"Buy One Get One",
+        "DiscountPercent":51.22,
+        "StartDate":"2025-12-07T22:35:26.129568",
+        "EndDate":"2025-12-11T22:35:26.129568",
+        "PromotionType":"Holiday"
+    },
+    {
+        "PromotionID":"PROM0037",
+        "ProductID":"PROD027",
+        "PromotionName":"Flash Deal",
+        "DiscountPercent":53.22,
+        "StartDate":"2025-05-21T01:15:25.272116",
+        "EndDate":"2025-06-20T01:15:25.272116",
+        "PromotionType":"Clearance"
+    },
+    {
+        "PromotionID":"PROM0038",
+        "ProductID":"PROD035",
+        "PromotionName":"Special Offer",
+        "DiscountPercent":13.37,
+        "StartDate":"2025-05-11T03:00:24.465442",
+        "EndDate":"2025-05-28T03:00:24.465442",
+        "PromotionType":"Store"
+    },
+    {
+        "PromotionID":"PROM0039",
+        "ProductID":"PROD019",
+        "PromotionName":"Special Offer",
+        "DiscountPercent":62.0,
+        "StartDate":"2025-07-17T14:06:22.469243",
+        "EndDate":"2025-08-07T14:06:22.469243",
+        "PromotionType":"Clearance"
+    },
+    {
+        "PromotionID":"PROM0040",
+        "ProductID":"PROD016",
+        "PromotionName":"Winter Clearance",
+        "DiscountPercent":58.72,
+        "StartDate":"2025-05-15T14:31:16.899758",
+        "EndDate":"2025-06-12T14:31:16.899758",
+        "PromotionType":"Online"
+    },
+    {
+        "PromotionID":"PROM0041",
+        "ProductID":"PROD038",
+        "PromotionName":"Buy One Get One",
+        "DiscountPercent":38.14,
+        "StartDate":"2025-06-26T16:47:57.871624",
+        "EndDate":"2025-07-20T16:47:57.871624",
+        "PromotionType":"Holiday"
+    },
+    {
+        "PromotionID":"PROM0042",
+        "ProductID":"PROD004",
+        "PromotionName":"Weekend Special",
+        "DiscountPercent":19.28,
+        "StartDate":"2025-10-25T16:02:17.041987",
+        "EndDate":"2025-11-17T16:02:17.041987",
+        "PromotionType":"Online"
+    },
+    {
+        "PromotionID":"PROM0043",
+        "ProductID":"PROD041",
+        "PromotionName":"Summer Sale",
+        "DiscountPercent":46.74,
+        "StartDate":"2025-07-22T17:59:44.896164",
+        "EndDate":"2025-08-21T17:59:44.896164",
+        "PromotionType":"Holiday"
+    },
+    {
+        "PromotionID":"PROM0044",
+        "ProductID":"PROD018",
+        "PromotionName":"Cyber Monday",
+        "DiscountPercent":36.64,
+        "StartDate":"2025-05-11T01:17:49.872421",
+        "EndDate":"2025-06-10T01:17:49.872421",
+        "PromotionType":"Limited Time"
+    },
+    {
+        "PromotionID":"PROM0045",
+        "ProductID":"PROD017",
+        "PromotionName":"Black Friday",
+        "DiscountPercent":5.56,
+        "StartDate":"2025-05-25T13:57:21.503038",
+        "EndDate":"2025-06-21T13:57:21.503038",
+        "PromotionType":"Store"
+    },
+    {
+        "PromotionID":"PROM0046",
+        "ProductID":"PROD044",
+        "PromotionName":"Special Offer",
+        "DiscountPercent":64.29,
+        "StartDate":"2025-03-23T11:14:31.447088",
+        "EndDate":"2025-04-18T11:14:31.447088",
+        "PromotionType":"Limited Time"
+    },
+    {
+        "PromotionID":"PROM0047",
+        "ProductID":"PROD048",
+        "PromotionName":"Winter Clearance",
+        "DiscountPercent":24.59,
+        "StartDate":"2025-05-18T15:03:42.994547",
+        "EndDate":"2025-05-28T15:03:42.994547",
+        "PromotionType":"Clearance"
+    },
+    {
+        "PromotionID":"PROM0048",
+        "ProductID":"PROD041",
+        "PromotionName":"Black Friday",
+        "DiscountPercent":26.01,
+        "StartDate":"2025-09-15T02:07:42.852439",
+        "EndDate":"2025-09-25T02:07:42.852439",
+        "PromotionType":"Online"
+    },
+    {
+        "PromotionID":"PROM0049",
+        "ProductID":"PROD005",
+        "PromotionName":"Winter Clearance",
+        "DiscountPercent":20.06,
+        "StartDate":"2025-09-05T15:17:38.597124",
+        "EndDate":"2025-09-08T15:17:38.597124",
+        "PromotionType":"Seasonal"
+    },
+    {
+        "PromotionID":"PROM0050",
+        "ProductID":"PROD005",
+        "PromotionName":"Flash Deal",
+        "DiscountPercent":60.5,
+        "StartDate":"2025-09-20T09:14:17.882185",
+        "EndDate":"2025-10-06T09:14:17.882185",
+        "PromotionType":"Clearance"
+    }
+]

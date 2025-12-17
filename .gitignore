@@ -1,0 +1,6 @@
+# Ignore local logs and PID files
+logs/
+airflow-webserver.pid
+__pycache__/
+# Optional: Ignore the actual metadata DB if you want users to start fresh
+# airflow.db
