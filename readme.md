@@ -5,6 +5,7 @@ A data engineering pipeline implementing the **Medallion Architecture (Bronze â†
 ---
 
 
+<<<<<<< HEAD
 ### Architecture Diagram
 
 ![Architecture Diagram](Data-project\assets\Architecture.png)
@@ -15,6 +16,8 @@ A data engineering pipeline implementing the **Medallion Architecture (Bronze â†
 
 
 
+=======
+>>>>>>> 2745774618b36b28dd9ee054fcc6c4338cbbead8
 ## Quick Start
 
 1. **Clone the repository**:
