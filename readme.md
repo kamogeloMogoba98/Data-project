@@ -5,19 +5,15 @@ A data engineering pipeline implementing the **Medallion Architecture (Bronze â†
 ---
 
 
-<<<<<<< HEAD
 ### Architecture Diagram
 
-![Architecture Diagram](Data-project\assets\Architecture.png)
+![Architecture Diagram](assets/Architecture.png)
 
 ### ERD Diagram
 
-![ERD Diagram](Data-project/assets/ERD.png)
+![ERD Diagram](assets/ERD.png)
 
 
-
-=======
->>>>>>> 2745774618b36b28dd9ee054fcc6c4338cbbead8
 ## Quick Start
 
 1. **Clone the repository**:
