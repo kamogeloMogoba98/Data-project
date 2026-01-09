@@ -4,10 +4,7 @@ A data engineering pipeline implementing the **Medallion Architecture (Bronze �
 
 ---
 
-##  Quick Start
-
-
-
+## Quick Start
 
 1. **Clone the repository**:
 
@@ -24,10 +21,9 @@ cp .env.example .env
 
 3. **Add your MotherDuck Token** to the `.env` file:
 
-```bash
-nano .env
+```plaintext
+MOTHERDUCK_TOKEN=md_your_actual_token_here
 ```
-- Paste your free MotherDuck token as `MOTHERDUCK_TOKEN=md_your_actual_token_here`
 
 4. **Initialize and start all Docker containers** (Airflow, MinIO, Metabase):
 
@@ -57,7 +53,6 @@ ls -l /opt/airflow/airflow_home_dev/my_local.db
 8. **Trigger the pipeline DAG** in Airflow:
 
 - DAG Name: `pipeline`
-- Trigger via Airflow UI or CLI:
 
 ```bash
 airflow dags trigger pipeline
@@ -65,91 +60,192 @@ airflow dags trigger pipeline
 
 ---
 
-## 🌐 Project UI Endpoints
+## Project UI Endpoints
 
-- **Airflow UI:** [http://localhost:8089](http://localhost:8089)
-- **MinIO Console:** [http://localhost:9001](http://localhost:9001)
-- **Metabase:** [http://localhost:3002](http://localhost:3002)
+- **Airflow UI:** http://localhost:8089
+- **MinIO Console:** http://localhost:9001
+- **Metabase:** http://localhost:3002
 
 ---
 
-## 📁 Project Directory Structure
+## Metabase Setup (DuckDB + MotherDuck)
+
+After all containers are running, connect Metabase to DuckDB/MotherDuck to explore and visualize the **Gold** layer.
+
+---
+
+### Step 1: Log in to Metabase
+
+1. Open Metabase in your browser:
+
+http://localhost:3002
+
+2. Log in using **your own Metabase credentials** (created on first launch).
+
+---
+
+### Step 2: Add a New Database
+
+1. Go to **Settings → Admin → Databases**
+2. Click **Add database**
+3. Configure the database as follows:
+
+---
+
+### Database Configuration
+
+**Database type**  
+DuckDB (community-developed driver)
+
+**Display name**  
+dataproject
+
+**Database file**  
+`:memory:`
+
+**Allow loading unsigned extensions**  
+Enabled (required for MotherDuck)
+
+**Read-only connection**  
+Optional
+
+---
+
+### MotherDuck Token
+
+Paste your **own MotherDuck token** (same one used in `.env`).
+
+Do not commit this token to GitHub.
+
+---
+
+### Init SQL (Required)
+
+```sql
+INSTALL motherduck;
+LOAD motherduck;
+SET motherduck_token='<YOUR_MOTHERDUCK_TOKEN_HERE>';
+
+ATTACH 'md:my_database' AS clouddb;
+USE clouddb;
+```
+
+---
+
+### Additional DuckDB Options
+
+```plaintext
+http_keep_alive=false
+```
+
+---
+
+### Save and Verify
+
+- Click **Save changes**
+- Go to **Browse data → dataproject**
+- Confirm `bronze`, `silver`, and `gold` schemas exist
+
+If tables do not appear immediately, trigger the Airflow DAG and refresh Metabase metadata.
+
+---
+
+### Viewing Data in MotherDuck Environment
+
+All processed data is stored inside the **MotherDuck cloud environment**.
+
+- The Airflow pipeline writes data to the MotherDuck database:
+
+```plaintext
+my_database
+```
+
+- This database exists in your MotherDuck account
+- You can query the same data from:
+  - MotherDuck UI
+  - Metabase
+  - DuckDB CLI
+
+Because Metabase connects using:
+
+```sql
+ATTACH 'md:my_database' AS clouddb;
+USE clouddb;
+```
+
+all data displayed in Metabase comes directly from **MotherDuck `my_database`**.
+
+Once inside Metabase, you can create rich dashboards, write queries against the tables, build questions, and visualize your business insights using charts, tables, and filters.
+
+---
+
+## Project Directory Structure
 
 ```
 Data-project/
-├── airflow_home_dev/        # Airflow home and local DuckDB storage
-│   ├── dags/                # Main Orchestration Folder
-│   │   ├── DimGenerators/   # Python scripts for data generation
-│   │   ├── DimJsonFiles/    # Local raw JSON source files
-│   │   ├── helper/          # Connection & Utility modules
-│   │   │   ├── duckdbconc.py        # MotherDuck/DuckDB connection helper
-│   │   │   ├── latestFolder.py      # S3 partition management
-│   │   │   └── MinoS3_connection.py # MinIO connection logic
-│   │   ├── table_insert/    # Medallion Layer Logic
-│   │   │   ├── BronzeTable.py       # Ingestion (Raw to Bronze)
-│   │   │   ├── Silvertables.py      # Transformation (Bronze to Silver)
-│   │   │   └── Goldtable.py         # Aggregation (Silver to Gold)
-│   │   └── Pipeline.py      # Main Airflow DAG
-│   └── my_local.db          # Local DuckDB instance (Git Ignored)
-├── .env                     # Environment secrets (Git Ignored)
-├── .gitignore               # Project exclude rules
-├── docker-compose.yaml      # Container orchestration (Airflow, MinIO, Metabase)
-├── Dockerfile               # Custom Airflow image
-├── Metabase.Dockerfile      # Custom Metabase image with DuckDB driver
-├── README.md                # Project documentation
-└── requirements.txt         # Python dependencies
+├── airflow_home_dev/
+│   ├── dags/
+│   │   ├── DimGenerators/
+│   │   ├── DimJsonFiles/
+│   │   ├── helper/
+│   │   ├── table_insert/
+│   │   └── Pipeline.py
+│   └── my_local.db
+├── .env
+├── docker-compose.yaml
+├── Dockerfile
+├── Metabase.Dockerfile
+├── README.md
+└── requirements.txt
 ```
 
 ---
 
-## 🔐 Environment Variables
+## Environment Variables
 
 ```plaintext
 MOTHERDUCK_TOKEN=md_your_actual_token_here
-
 ```
 
-⚠️ **Do not commit your real `.env` file**. Add it to `.gitignore`.
+Do not commit your real `.env` file.
 
 ---
 
-## 🧬 Data Model (Bronze → Silver → Gold)
+## Data Model (Bronze → Silver → Gold)
 
-- **Bronze (Raw):** DuckDB schema `bronze`, JSON in MinIO, tables: `dim_customer`, `dim_product`, `dim_promotype`
-- **Silver (Cleaned):** DuckDB schema `silver`, Parquet in MinIO, tables: `dim_customer`, `dim_product`, `dim_promo`
-- **Gold (Aggregated):** DuckDB schema `gold`, Parquet in MinIO, table: `fact_sales`
-
----
-
-## 🛠 Tools & Purpose
-
-- **Apache Airflow:** DAG orchestration and task scheduling
-- **Python 3:** ETL logic and data processing
-- **MinIO:** S3-compatible object storage for JSON and Parquet files
-- **DuckDB:** Local SQL database for schema layers
-- **MotherDuck:** Cloud-hosted DuckDB for querying and analytics
-- **Metabase:** Open-source BI tool to visualize data and create dashboards
+- **Bronze:** Raw JSON stored in MinIO, DuckDB schema `bronze`
+- **Silver:** Cleaned Parquet, DuckDB schema `silver`
+- **Gold:** Aggregated analytics tables, DuckDB schema `gold` (`fact_sales`)
 
 ---
 
-## 🛡️ Final Checklist Before You Push
+## Tools and Purpose
+
+- **Apache Airflow:** DAG orchestration and scheduling
+- **Python:** ETL and transformation logic
+- **MinIO:** S3-compatible object storage
+- **DuckDB / MotherDuck:** Analytical database engine
+- **Metabase:** Business intelligence and dashboards
+
+---
+
+## Final Checklist Before You Push
 
 - [ ] `.env.example` exists and is committed
-- [ ] `.env` is in `.gitignore`
+- [ ] `.env` is ignored
 - [ ] DAG loads successfully in Airflow UI
-- [ ] Imports work without `sys.path` hacks
 - [ ] Secrets are not hardcoded
 
 ---
 
-## 👤 Author
+## Author
 
 **Kamogelo Mogoba**  
-Data Engineer | linkedin kamogelo Mogoba 
+Data Engineer | LinkedIn: Kamogelo Mogoba
 
 ---
 
-## 📄 License
+## License
 
 This project is for learning and portfolio purposes.
 

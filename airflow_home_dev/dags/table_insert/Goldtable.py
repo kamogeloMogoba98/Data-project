@@ -78,9 +78,9 @@ class GoldDataParquet:
                 a.Price * {number} AS TotalAmount,
                 CURRENT_TIMESTAMP AS Processed_at
             FROM silver.dim_product a    
-            LEFT JOIN silver.dim_promotion b 
+            inner JOIN silver.dim_promotion b 
                 ON a.ProductID = b.ProductID 
-            LEFT JOIN silver.dim_customer c 
+            inner JOIN silver.dim_customer c 
                 ON c.ProductID = a.ProductID
             ) ;
                             

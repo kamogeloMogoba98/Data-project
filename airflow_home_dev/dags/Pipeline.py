@@ -4,90 +4,6 @@
 # We execute using methods from varies scripts
 
 
-# """
-# import sys
-# import os
-
-
-# sys.path.append("/opt/airflow/dags/") 
-
-
-
-# from datetime import datetime, timedelta
-# from airflow import DAG
-# from airflow.operators.empty import EmptyOperator
-# from airflow.operators.python import PythonOperator
-
-# from DimGenerators.dimCustomer import dimCustomerGen
-# logger = get_logger(__name__)
-
-
-# my_dag = DAG(
-#      dag_id="Pipeline",
-#      start_date=datetime.datetime(2021, 1, 1),
-#      schedule="@daily",
-#  )
-
-# doc_description = """
-
-#  # Sales Delta Pipeline
-    
-#     **Architecture**: Bronze → Silver → Gold (Medallion)
-    
-#     **Design Pattern**: Interface Inheritance
-#     - All processors inherit from `BaseProcessor`
-#     - Shared authentication, error handling, and metrics
-#     - Consistent interface across all layers
-    
-#     **Flow**:
-#     1. **Bronze**: Ingest raw sales data (with dirty data)
-#     2. **Bronze**: Load dimension tables (idempotent)
-#     3. **Silver**: Clean, validate, and deduplicate to Delta Lake
-#     4. **Quality**: Run Soda Core data quality checks
-#     5. **Gold**: Aggregate business metrics (parallel processing)
-    
-#  """
-
-# EmptyOperator(task_id="task", dag=my_dag)
-
-# def Sale_process_pipeline():
-
-#     @task(
-#         task_id = "insert into bronze minio S3 files",
-#         inlets=[],
-#         outlets=[File(url="s3://bronze/sales_raw/")]
-#     )
-#     def insert_into_bronze_S3_files():
-#         """
-#         The data from the source is sent to an S3 bucket in MinIO as a JSON file.
-#         """
-
-#         try:
-#             bronze_DimCustomer = dimCustomerGen()
-#             bronze = bronze_DimCustomer.dimCustomerGenerator()
-
-#             logger.info(
-#                 f"The customer data from source has been ingested. "
-#                 f"Record count: {bronze['count']}, "
-#                 f"Destination file: {bronze['Output_path']}."
-#             )
-
-#             return bronze
-
-#         except Exception as e:
-#             logger.error(f"Bronze ingestion failed: {e}")
-#             raise
-
-
-#    # Define task dependencies
-#     bronze_task = insert_into_bronze_S3_files()
-#     start >> bronze_task
-
-# # Instantiate DAG
-# dag = Sale_process_pipeline()
-
-
-
 import sys
 import os
 sys.path.append(os.path.join(os.environ.get("airflow_home_dev", "."), "dags"))
@@ -367,6 +283,8 @@ def sale_process_pipeline():
             # 2. Attach MotherDuck
             con.sql("LOAD motherduck;")
             con.sql(f"SET motherduck_token='{token}';")
+            con.sql("CREATE DATABASE IF NOT EXISTS my_database;")
+
             con.sql("ATTACH 'md:my_database' AS cloud_db;")
             
             # 3. Get a list of all tables in the local DB
@@ -397,14 +315,7 @@ def sale_process_pipeline():
         finally:
             con.close()
 
-
-
-
-        
-    
-
-
-        
+  
 
     # 3. Call the task function to create the task instance
     injest_json_bronze = insert_into_bronze_s3_files()
@@ -414,10 +325,6 @@ def sale_process_pipeline():
     Goldoarquet_to_GoldFacttables=Goldparquet_to_facttable()
     # Assuming your ingestion task is called ingest_task
     motherduck=push_to_motherduck()
-        
-
-
-    
 
 
     # 4. Set Dependencies

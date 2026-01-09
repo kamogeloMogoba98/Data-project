@@ -1,3 +1,5 @@
+version: '3.8'
+
 x-airflow-common: &airflow-common
   build: .
   environment: &airflow-common-env
@@ -5,10 +7,7 @@ x-airflow-common: &airflow-common
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW_UID: 50000
-
-       # ... other variables ...
-    MOTHERDUCK_TOKEN: ${MOTHERDUCK_TOKEN}  # This pulls from your .env file
-    # Credentials for your Python os.environ.get calls
+    MOTHERDUCK_TOKEN: ${MOTHERDUCK_TOKEN}
     MINIO_ENDPOINT: "http://minio-server:9000"
     MINIO_ACCESS_KEY: "admin"
     MINIO_SECRET_KEY: "password"
@@ -18,8 +17,11 @@ x-airflow-common: &airflow-common
     - ./plugins:/opt/airflow/plugins
     - ./airflow.db:/opt/airflow/airflow.db
   user: "${AIRFLOW_UID:-50000}:0"
+  networks:
+    - data-network
 
 services:
+  # --- MINIO ---
   minio:
     image: minio/minio:latest
     container_name: minio-server
@@ -30,14 +32,17 @@ services:
     environment:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: password
+    networks:
+      - data-network
 
-  # 🚀 AUTOMATED BUCKET CREATION 
   minio-init:
     image: minio/mc
     container_name: minio-setup
     depends_on:
       - minio
     entrypoint: /bin/sh
+    networks:
+      - data-network
     command:
       - -c
       - |
@@ -48,8 +53,8 @@ services:
         /usr/bin/mc mb --ignore-existing myminio/bronze
         /usr/bin/mc mb --ignore-existing myminio/silver
         /usr/bin/mc mb --ignore-existing myminio/gold
-        echo 'Buckets created successfully!'
 
+  # --- METABASE ---
   metabase:
     build:
       context: .
@@ -58,14 +63,18 @@ services:
     ports:
       - "3002:3000"
     environment:
-      # Tell Metabase where to find the driver inside the container
       - MB_PLUGINS_DIR=/plugins
-    # volumes:
-    #   # This allows Metabase to see your DuckDB file created by Airflow
-    #   # - ./airflow_home_dev:/metabase-data
+      - MB_DB_TYPE=h2
+      - MOTHERDUCK_TOKEN=${MOTHERDUCK_TOKEN}
+      - MB_DB_FILE_PATH=/tmp/metabase.db 
+    volumes:
+      - ./plugins:/plugins
+    networks:
+      - data-network
     depends_on:
       - minio
 
+  # --- AIRFLOW ---
   airflow-init:
     <<: *airflow-common
     container_name: airflow-init
@@ -82,8 +91,11 @@ services:
         condition: service_completed_successfully
       minio-init:
         condition: service_completed_successfully
+      # metabase-init removed from here so Airflow can start freely
     ports:
       - "8089:8080"
     command: standalone
 
-    
+networks:
+  data-network:
+    driver: bridge
